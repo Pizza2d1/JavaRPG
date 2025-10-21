@@ -5,6 +5,9 @@ import java.awt.event.KeyEvent;
 import javax.swing.JPanel;
 
 public class Keybindings {
+	/*
+	 * Add buffered inputs for attacking. Add detection for holding down a key to keep moving at a constant pace (not worrying about acceleration)
+	 */
 	static void action(int keyCode, JPanel background_panel, JPanel panel) {
 		switch (keyCode) {
 		case KeyEvent.VK_W:

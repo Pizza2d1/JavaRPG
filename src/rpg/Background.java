@@ -2,18 +2,15 @@ package rpg;
 
 import java.awt.Point;
 
-import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 
 public class Background {
 
-	ImageIcon backgroundsrc = new ImageIcon(Background.class.getResource("/rpg/source.png"));
-
-	public Background(JLayeredPane layeredPane, JPanel background_panel) {
+	public Background(JLayeredPane layeredPane, JPanel background_panel, int z_layer) {
 		background_panel.setBounds(0, 0, Constants.SCREEN_SIZE_X, Constants.SCREEN_SIZE_Y);
-		layeredPane.setLayer(background_panel, 1);
+		layeredPane.setLayer(background_panel, z_layer);
 		layeredPane.add(background_panel);
 		background_panel.setLayout(null);
 
@@ -28,9 +25,13 @@ public class Background {
 	private void backgroundPiece(JPanel panel, int x, int y) {
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setBounds(x, y, 20, 20);
-		lblNewLabel.setIcon(backgroundsrc);
+		lblNewLabel.setIcon(Constants.backgroundsrc);
 		panel.add(lblNewLabel);
 	}
+
+	/*
+	 * METHODS GO HERE
+	 */
 
 	static void moveBGUp(JPanel background) {
 		Point backgroundLocation = background.getLocation();

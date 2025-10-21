@@ -4,6 +4,8 @@ import java.awt.EventQueue;
 import java.awt.GridLayout;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -11,10 +13,13 @@ import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+/**
+ * @author Nathan Young
+ */
 public class RPG_App extends JFrame{
 
 	// Declare Objects
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L; // For JFrame
 	private JPanel contentPane;
 	static JLayeredPane layeredPane = new JLayeredPane();
 	static JPanel player_panel = new JPanel();
@@ -32,7 +37,7 @@ public class RPG_App extends JFrame{
 					frame.addKeyListener(new KeyAdapter() {
 						public void keyPressed(KeyEvent e) {
 							int keyCode = e.getKeyCode();
-							Keybindings.action(keyCode, background_panel, player_panel);
+							Keybindings.action(keyCode, background_panel, player_panel); // Put affected panels here
 						}
 					});
 					frame.setVisible(true);
@@ -55,7 +60,40 @@ public class RPG_App extends JFrame{
 		contentPane.add(layeredPane);
 		layeredPane.setLayout(null);
 
-		new Background(layeredPane, background_panel);
-		new Player(layeredPane, player_panel);
+		// Initialize the panels with z layer values
+		new Background(layeredPane, background_panel, 0);
+		new Player(layeredPane, player_panel, 1);
+	}
+	
+	/*
+	 * Methods go here (even if unused
+	 */
+	public static int getCurrentMilliseconds() {
+		LocalDateTime now = LocalDateTime.now();
+		DateTimeFormatter Mformatter = DateTimeFormatter.ofPattern("mm");
+		DateTimeFormatter Sformatter = DateTimeFormatter.ofPattern("ss");
+		DateTimeFormatter mmformatter = DateTimeFormatter.ofPattern("SSS");
+		String strMin = now.format(Mformatter);
+		String strSec = now.format(Sformatter);
+		String strMilli = now.format(mmformatter);
+		int min = Integer.valueOf(strMin);
+		int sec = Integer.valueOf(strSec);
+		int milli = Integer.valueOf(strMilli);
+		if (min == 0)
+			min += 60;
+		int time = ((min * 60 * 1000) + (sec * 1000) + milli);
+		return time;
+	}
+
+	public static void sleepy(int milli) {
+		try {
+			// to sleep 10 seconds
+			Thread.sleep(milli);
+		} catch (InterruptedException epenis) {
+			// recommended because catching InterruptedException clears interrupt flag
+			Thread.currentThread().interrupt();
+			// you probably want to quit if the thread is interrupted
+			return;
+		}
 	}
 }

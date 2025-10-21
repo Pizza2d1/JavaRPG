@@ -5,7 +5,6 @@ import java.awt.Point;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
@@ -13,35 +12,37 @@ import javax.swing.JPanel;
 public class Player{
 
 	static JLabel player = new JLabel("");
-	ImageIcon blue = new ImageIcon(Background.class.getResource("/rpg/blue.png"));
-	ImageIcon red = new ImageIcon(Background.class.getResource("/rpg/red.png"));
-
 	
-	public Player(JLayeredPane layeredPane, JPanel player_panel) {
+	public Player(JLayeredPane layeredPane, JPanel player_panel, int z_layer) {
 		player_panel.setBackground(new Color(255, 255, 255));
 		int startingPosx = (Constants.SCREEN_SIZE_X / 2) - (Constants.PLAYER_SIZE / 2);
 		int startingPosy = (Constants.SCREEN_SIZE_Y / 2) - (Constants.PLAYER_SIZE / 2);
 		player_panel.setBounds(startingPosx, startingPosy, Constants.PLAYER_SIZE, Constants.PLAYER_SIZE);
-		layeredPane.setLayer(player_panel, 2);
+		layeredPane.setLayer(player_panel, z_layer);
 		layeredPane.add(player_panel);
 		player_panel.setLayout(null);
 
 		player.setBounds(0, 0, Constants.PLAYER_SIZE, Constants.PLAYER_SIZE);
-		player.setIcon(blue);
+		player.setIcon(Constants.blue);
 		player_panel.add(player);
 	}
-	public Player(JLayeredPane layeredPane, JPanel player_panel, int startingPosx, int startingPosy) {
+	// This ones for testing positions
+	public Player(JLayeredPane layeredPane, JPanel player_panel, int z_layer, int startingPosx, int startingPosy) {
 		player_panel.setBackground(new Color(255, 255, 255));
 		player_panel.setBounds(startingPosx, startingPosy, Constants.PLAYER_SIZE, Constants.PLAYER_SIZE);
-		layeredPane.setLayer(player_panel, 3);
+		layeredPane.setLayer(player_panel, z_layer);
 		layeredPane.add(player_panel);
 		player_panel.setLayout(null);
 
 		player.setBounds(0, 0, Constants.PLAYER_SIZE, Constants.PLAYER_SIZE);
-		player.setIcon(red);
+		player.setIcon(Constants.red);
 		player_panel.add(player);
 	}
 	
+	/*
+	 * METHODS GO HERE
+	 */
+
 	static void moveUp(JPanel panel) {
 		Point playerLocation = panel.getLocation();
 		int pointx = (int) Math.round(playerLocation.getX());
