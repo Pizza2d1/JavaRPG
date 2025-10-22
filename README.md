@@ -8,7 +8,7 @@ We want to make a top-down styled videogame where you are able to explore a worl
 - [ ] Make player, background and enemy sprites
 - [ ] Add hurtboxes/hitboxes for player and enemies
 - [ ] Add a way to move the map as a way to explore (player in center at all times)
-- [ ] Make a way to create the maps easily (create seperate program for that)
+- [x] Make a way to create the maps easily (create seperate program for that)
 - [ ] Add motion to the enemies so they move towards you
 - [ ] Animate the enemies
 - [ ] Make a boss enemy
