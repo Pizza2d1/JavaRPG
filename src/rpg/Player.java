@@ -24,6 +24,7 @@ public class Player{
 
 		player.setBounds(0, 0, Constants.PLAYER_SIZE, Constants.PLAYER_SIZE);
 		player.setIcon(Constants.blue);
+		player_panel.setOpaque(false);
 		player_panel.add(player);
 	}
 	// This ones for testing positions
@@ -36,6 +37,7 @@ public class Player{
 
 		player.setBounds(0, 0, Constants.PLAYER_SIZE, Constants.PLAYER_SIZE);
 		player.setIcon(Constants.red);
+		player_panel.setOpaque(false);
 		player_panel.add(player);
 	}
 	

@@ -10,10 +10,14 @@ public class Constants {
 	
 	// PLAYER
 	final static int PLAYER_MOVE_SPEED = 20;
-	final static int PLAYER_SIZE = 20;
+	final static int PLAYER_SIZE = 40;
 	
 	final static ImageIcon blue = new ImageIcon(Background.class.getResource("/rpg/sprites/blue.png"));
 	final static ImageIcon red = new ImageIcon(Background.class.getResource("/rpg/sprites/red.png"));
+	final static ImageIcon bk = new ImageIcon(Background.class.getResource("/rpg/sprites/papa.png"));
+	final static ImageIcon rc = new ImageIcon(Background.class.getResource("/rpg/sprites/rcircle.png"));
+
+
 	
 	// BACKGROUND
 	final static int BACKGROUND_MOVE_SPEED = 10;
