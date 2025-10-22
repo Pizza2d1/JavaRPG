@@ -70,33 +70,4 @@ public class Player{
 		int pointy = (int) Math.round(playerLocation.getY());
 		player.setLocation(pointx + Constants.PLAYER_MOVE_SPEED, pointy);
 	}
-	
-	public static int getCurrentMilliseconds() {
-		LocalDateTime now = LocalDateTime.now();
-		DateTimeFormatter Mformatter = DateTimeFormatter.ofPattern("mm");
-		DateTimeFormatter Sformatter = DateTimeFormatter.ofPattern("ss");
-		DateTimeFormatter mmformatter = DateTimeFormatter.ofPattern("SSS");
-		String strMin = now.format(Mformatter);
-		String strSec = now.format(Sformatter);
-		String strMilli = now.format(mmformatter);
-		int min = Integer.valueOf(strMin);
-		int sec = Integer.valueOf(strSec);
-		int milli = Integer.valueOf(strMilli);
-		if (min == 0)
-			min += 60;
-		int time = ((min * 60 * 1000) + (sec * 1000) + milli);
-		return time;
-	}
-
-	public static void sleepy(int milli) {
-		try {
-			// to sleep 10 seconds
-			Thread.sleep(milli);
-		} catch (InterruptedException epenis) {
-			// recommended because catching InterruptedException clears interrupt flag
-			Thread.currentThread().interrupt();
-			// you probably want to quit if the thread is interrupted
-			return;
-		}
-	}
 }

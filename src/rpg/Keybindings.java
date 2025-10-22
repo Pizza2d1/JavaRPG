@@ -8,6 +8,7 @@ public class Keybindings {
 	/*
 	 * Add buffered inputs for attacking. Add detection for holding down a key to keep moving at a constant pace (not worrying about acceleration)
 	 */
+	// List of keyevents: https://docs.oracle.com/javase/7/docs/api/java/awt/event/KeyEvent.html
 	static void action(int keyCode, JPanel background_panel, JPanel panel) {
 		switch (keyCode) {
 		case KeyEvent.VK_W:

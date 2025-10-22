@@ -17,6 +17,7 @@ public class Constants {
 	
 	// BACKGROUND
 	final static int BACKGROUND_MOVE_SPEED = 10;
+	final static int BLOCK_SIZE = 20;
 	
 	final static ImageIcon backgroundsrc = new ImageIcon(Background.class.getResource("/rpg/sprites/source.png"));
 
