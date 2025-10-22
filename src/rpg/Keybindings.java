@@ -35,6 +35,10 @@ public class Keybindings {
 		case KeyEvent.VK_RIGHT:
 			Player.moveRight(panel);
 			break;
+		case KeyEvent.VK_SPACE:
+			Player.swingSword(panel);
+			System.out.println("swung");
+			break;
 		default:
 			break;
 		}
