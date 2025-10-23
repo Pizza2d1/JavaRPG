@@ -11,7 +11,13 @@ public class Constants {
 	// PLAYER
 	final static int PLAYER_MOVE_SPEED = 20;
 	final static int PLAYER_SIZE = 40;
-	final static int SWORD_DISTANCE = 20;
+	final static int SWORD_DISTANCE = 40;
+	final static int SWORD_SIZE = 80;
+	final static int SWORD_SIZE_X = 120;
+	final static int SWORD_SIZE_Y = 40;	
+	final static int SWING_TIME = 400; // In milliseconds
+
+
 
 	
 	final static ImageIcon blue = new ImageIcon(Background.class.getResource("/rpg/sprites/blue.png"));
