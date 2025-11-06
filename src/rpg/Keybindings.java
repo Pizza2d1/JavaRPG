@@ -11,6 +11,8 @@ public class Keybindings {
 	 */
 	// List of keyevents: https://docs.oracle.com/javase/7/docs/api/java/awt/event/KeyEvent.html
 	static int buffer = Player.getCurrentMilliseconds();
+	static int pre_time;
+	static int new_time;
 	static void action(int keyCode, JPanel background_panel, JPanel panel) {
 		switch (keyCode) {
 		case KeyEvent.VK_W:
@@ -38,8 +40,8 @@ public class Keybindings {
 			Player.moveRight(panel);
 			break;
 		case KeyEvent.VK_SPACE:
-			int pre_time = buffer;
-			int new_time = Player.getCurrentMilliseconds();
+			pre_time = buffer;
+			new_time = Player.getCurrentMilliseconds();
 			System.out.println(pre_time);		
 			System.out.println(new_time);
 			if (new_time < pre_time+Constants.SWING_TIME) {
