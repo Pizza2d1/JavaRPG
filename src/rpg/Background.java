@@ -1,13 +1,11 @@
 package rpg;
 
-import java.awt.Point;
-
 import javax.swing.Icon;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 
-public class Background {
+public class Background implements Movable {
 
 	// public Background(JLayeredPane layeredPane, JPanel background_panel, int
 	// z_layer) {
@@ -36,22 +34,22 @@ public class Background {
 			for (String part : parts) {
 				String[] part2s = part.split("_");
 
-				System.out.println("X: " + part2s[0]);
-				System.out.println("Y: " + part2s[1]);
-				System.out.println("Icon: " + part2s[2]);
+				// System.out.println("X: " + part2s[0]);
+				// System.out.println("Y: " + part2s[1]);
+				// System.out.println("Icon: " + part2s[2]);
 				int x = Integer.valueOf(part2s[0]);
 				int y = Integer.valueOf(part2s[1]);
-				String iconName = part2s[2];
+				String iconID = part2s[2];
 
 				Icon BGIcon;
-				switch (iconName) {
-				case "blue.png":
+				switch (iconID) {
+				case "B":
 					BGIcon = Constants.blue;
 					break;
-				case "red.png":
+				case "R":
 					BGIcon = Constants.red;
 					break;
-				case "source.png":
+				case "S":
 					BGIcon = Constants.backgroundsrc;
 					break;
 				default:
@@ -80,33 +78,5 @@ public class Background {
 	/*
 	 * METHODS GO HERE
 	 */
-
-	static void moveBGUp(JPanel background) {
-		Point backgroundLocation = background.getLocation();
-		int pointx = (int) Math.round(backgroundLocation.getX());
-		int pointy = (int) Math.round(backgroundLocation.getY());
-		background.setLocation(pointx, pointy - Constants.BACKGROUND_MOVE_SPEED);
-	}
-
-	static void moveBGDown(JPanel background) {
-		Point backgroundLocation = background.getLocation();
-		int pointx = (int) Math.round(backgroundLocation.getX());
-		int pointy = (int) Math.round(backgroundLocation.getY());
-		background.setLocation(pointx, pointy + Constants.BACKGROUND_MOVE_SPEED);
-	}
-
-	static void moveBGLeft(JPanel background) {
-		Point backgroundLocation = background.getLocation();
-		int pointx = (int) Math.round(backgroundLocation.getX());
-		int pointy = (int) Math.round(backgroundLocation.getY());
-		background.setLocation(pointx - Constants.BACKGROUND_MOVE_SPEED, pointy);
-	}
-
-	static void moveBGRight(JPanel background) {
-		Point backgroundLocation = background.getLocation();
-		int pointx = (int) Math.round(backgroundLocation.getX());
-		int pointy = (int) Math.round(backgroundLocation.getY());
-		background.setLocation(pointx + Constants.BACKGROUND_MOVE_SPEED, pointy);
-	}
 
 }

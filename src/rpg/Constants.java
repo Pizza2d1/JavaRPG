@@ -9,7 +9,7 @@ public class Constants {
 	final static int SCREEN_SIZE_Y = 800;
 	
 	// PLAYER
-	final static int PLAYER_MOVE_SPEED = 20;
+	final static int PLAYER_STEP = 20;
 	final static int PLAYER_SIZE = 40;
 	final static int SWORD_DISTANCE = 40;
 	final static int SWORD_SIZE = 80;
@@ -37,4 +37,9 @@ public class Constants {
 
 	
 	// ENEMIES
+	final static int ENEMY_SIZE = 40;
+	final static int ENEMY_HEALTH = 100;
+	final static int ENEMY_DAMAGE = 15;
+	final static int ENEMY_STEP = 5; // Distance
+	final static int ENEMY_PACE = 50; // Time (milliseconds)
 }

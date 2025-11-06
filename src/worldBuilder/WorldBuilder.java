@@ -1,12 +1,10 @@
 package worldBuilder;
 
 import java.awt.EventQueue;
-import java.awt.List;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.WindowEvent;
 import java.io.File;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -15,13 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import rpg.Constants;
-
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
-
-import java.math.BigInteger;
 
 public class WorldBuilder extends JFrame {
 
@@ -96,7 +88,21 @@ public class WorldBuilder extends JFrame {
 				String penis = map.get(pos).getIcon().toString();
 				File f = new File(penis);
 				String penis2 = f.getName();
-				output.append(String.format("%d_%d_%s", x, y, penis2));
+				char IconID = 'S'; // default as source
+
+				switch (penis2) {
+				case "red.png":
+					IconID = 'R';
+					break;
+				case "blue.png":
+					IconID = 'B';
+					break;
+				case "source.png":
+					IconID = 'S';
+					break;
+				}
+
+				output.append(String.format("%d_%d_%s", x, y, IconID));
 				output.append(",");
 				pos++;
 			}

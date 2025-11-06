@@ -5,50 +5,67 @@ import java.awt.event.KeyEvent;
 
 import javax.swing.JPanel;
 
+import rpg.Player.facingDirection;
+
 public class Keybindings {
 	 /*
 	 * Add buffered inputs for attacking. Add detection for holding down a key to keep moving at a constant pace (not worrying about acceleration)
 	 */
 	// List of keyevents: https://docs.oracle.com/javase/7/docs/api/java/awt/event/KeyEvent.html
-	static int buffer = Player.getCurrentMilliseconds();
+	static int buffer = RPG_App.getCurrentMilliseconds();
 	static int pre_time;
 	static int new_time;
-	static void action(int keyCode, JPanel background_panel, JPanel panel) {
+	
+	static Player player;
+	static Background background;
+	
+	public Keybindings(Player player, Background background) {
+		Keybindings.player = player;
+		Keybindings.background = background;
+	}
+	
+	static void action(int keyCode, JPanel background_panel, JPanel player_panel) {
 		switch (keyCode) {
 		case KeyEvent.VK_W:
-			Background.moveBGUp(background_panel);
+			background.moveUp(background_panel, Constants.BACKGROUND_MOVE_SPEED);
 			break;
 		case KeyEvent.VK_S:
-			Background.moveBGDown(background_panel);
+			background.moveDown(background_panel, Constants.BACKGROUND_MOVE_SPEED);
 			break;
 		case KeyEvent.VK_A:
-			Background.moveBGLeft(background_panel);
+			background.moveLeft(background_panel, Constants.BACKGROUND_MOVE_SPEED);
 			break;
 		case KeyEvent.VK_D:
-			Background.moveBGRight(background_panel);
+			background.moveRight(background_panel, Constants.BACKGROUND_MOVE_SPEED);
 			break;
 		case KeyEvent.VK_UP:
-			Player.moveUp(panel);
+			player.moveUp(player_panel, Constants.PLAYER_STEP);
+			Player.facing = facingDirection.UP;
 			break;
 		case KeyEvent.VK_DOWN:
-			Player.moveDown(panel);
+			player.moveDown(player_panel, Constants.PLAYER_STEP);
+			Player.facing = facingDirection.DOWN;
 			break;
 		case KeyEvent.VK_LEFT:
-			Player.moveLeft(panel);
+			player.moveLeft(player_panel, Constants.PLAYER_STEP);
+			Player.facing = facingDirection.LEFT;
 			break;
 		case KeyEvent.VK_RIGHT:
-			Player.moveRight(panel);
+			player.moveRight(player_panel, Constants.PLAYER_STEP);
+			Player.facing = facingDirection.RIGHT;
 			break;
+
 		case KeyEvent.VK_SPACE:
 			pre_time = buffer;
-			new_time = Player.getCurrentMilliseconds();
+			new_time = RPG_App.getCurrentMilliseconds();
 			System.out.println(pre_time);		
 			System.out.println(new_time);
 			if (new_time < pre_time+Constants.SWING_TIME) {
 				//System.out.println("Too fast");
 			} else {
 			    Thread taskThread = new Thread(() -> {
-					Rectangle hurtbox = Player.swingSword(panel);
+					Rectangle hurtbox = Player.swingSword(player_panel);
+					Player.checkHurtbox(hurtbox);
 			    });
 			    taskThread.start();
 				//System.out.println("swung");
