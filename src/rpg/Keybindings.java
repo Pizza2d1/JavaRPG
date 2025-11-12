@@ -39,6 +39,7 @@ public class Keybindings {
 			background.moveRight(background_panel, Constants.BACKGROUND_MOVE_SPEED);
 			break;
 		
+		/*
 		case KeyEvent.VK_UP:
 			background.moveDown(background_panel, Constants.BACKGROUND_MOVE_SPEED);
 			Player.facing = facingDirection.UP;
@@ -55,7 +56,8 @@ public class Keybindings {
 			background.moveLeft(background_panel, Constants.BACKGROUND_MOVE_SPEED);
 			Player.facing = facingDirection.RIGHT;
 			break;
-		/*
+		*/
+
 		case KeyEvent.VK_UP:
 			player.moveUp(player_panel, Constants.PLAYER_STEP);
 			Player.facing = facingDirection.UP;
@@ -72,7 +74,6 @@ public class Keybindings {
 			player.moveRight(player_panel, Constants.PLAYER_STEP);
 			Player.facing = facingDirection.RIGHT;
 			break;
-		*/
 
 		case KeyEvent.VK_SPACE:
 			pre_time = buffer;
@@ -83,8 +84,11 @@ public class Keybindings {
 				//System.out.println("Too fast");
 			} else {
 			    Thread taskThread = new Thread(() -> {
-					Rectangle hurtbox = Player.swingSword(player_panel);
-					Player.checkHurtbox(hurtbox);
+					//Rectangle hurtbox = Player.swingSword(player_panel);
+					System.out.println(RPG_App.enemies.size());
+					for (Enemy1 enemy_ent : RPG_App.enemies) {
+						Player.checkHurtbox(Enemy1.enemy);
+					}
 			    });
 			    taskThread.start();
 				//System.out.println("swung");

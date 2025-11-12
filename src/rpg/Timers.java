@@ -33,6 +33,7 @@ public class Timers implements Runnable {
 			break;
 		case DOWN:
 			test_enemy.moveDown(enemies_panel, Constants.ENEMY_STEP);
+			
 			break;
 		case LEFT:
 			test_enemy.moveLeft(enemies_panel, Constants.ENEMY_STEP);

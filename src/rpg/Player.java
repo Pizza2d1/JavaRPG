@@ -1,6 +1,7 @@
 package rpg;
 
 import java.awt.Color;
+import java.awt.Point;
 import java.awt.Rectangle;
 
 import javax.swing.JLabel;
@@ -19,6 +20,8 @@ public class Player implements Movable {
 	static JLabel player = new JLabel("");		
 	static JLabel sword = new JLabel("");
 	static facingDirection facing = facingDirection.UP; // Default facing
+	int startingPosX;
+	int startingPosY;
 	
 	public Player(JLayeredPane layeredPane, JPanel player_panel, int z_layer) {
 		//player_panel.setBackground(new Color(255, 255, 255));
@@ -97,9 +100,27 @@ public class Player implements Movable {
 		sword.setVisible(false);;
 		return sword.getBounds();
 	}
+
 	
-	public static void checkHurtbox(Rectangle hurtbox) {
-		// TODO use Rectangle object to check to see if there is a colliding enemy hitbox
+	public static void checkHurtbox(JLabel enemy) {
+	    Point player_p = player.getLocationOnScreen();
+	    int x1 = player_p.x;
+	    int y1 = player_p.y + Constants.PLAYER_SIZE;
+	    int x2 = player_p.x + Constants.PLAYER_SIZE;
+	    int y2 = player_p.y;
+	
+	    Point enemy_p = enemy.getLocationOnScreen();
+	    int x3 = enemy_p.x;
+	    int y3 = enemy_p.y + Constants.ENEMY_SIZE;
+	    int x4 = enemy_p.x + Constants.ENEMY_SIZE;
+	    int y4 = enemy_p.y;
+	    
+	    if ((x1 < x4) && (x3 < x2) && (y1 > y4) && (y3 > y2)) {
+        // TODO trigger enemy encounter
+	    	System.out.println("Hit");
+	    } else {
+	    	System.out.println("No Hit");
+	    }
 	}
 
 
