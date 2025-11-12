@@ -21,8 +21,8 @@ public class WorldBuilder extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private int WORLD_SIZE_X = 800;
-	private int WORLD_SIZE_Y = 800;
+	private int WORLD_SIZE_X = 1600;
+	private int WORLD_SIZE_Y = 1000;
 	private int BLOCK_SIZE = 20;
 	private int WIDTH = WORLD_SIZE_X / BLOCK_SIZE; // For indexing hashmap
 	Map<Integer, JLabel> map = new HashMap<>();

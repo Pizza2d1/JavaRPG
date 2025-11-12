@@ -5,8 +5,11 @@ import javax.swing.ImageIcon;
 public class Constants {
 	
 	// GLOBAL
-	final static int SCREEN_SIZE_X = 800;
-	final static int SCREEN_SIZE_Y = 800;
+	final static int WORLD_SIZE_X = 1600;
+	final static int WORLD_SIZE_Y = 1000;
+	final static int SCREEN_SIZE_X = 500;
+	final static int SCREEN_SIZE_Y = 500;
+
 	
 	// PLAYER
 	final static int PLAYER_STEP = 20;

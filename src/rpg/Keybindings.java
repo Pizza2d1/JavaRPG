@@ -38,6 +38,24 @@ public class Keybindings {
 		case KeyEvent.VK_D:
 			background.moveRight(background_panel, Constants.BACKGROUND_MOVE_SPEED);
 			break;
+		
+		case KeyEvent.VK_UP:
+			background.moveDown(background_panel, Constants.BACKGROUND_MOVE_SPEED);
+			Player.facing = facingDirection.UP;
+			break;
+		case KeyEvent.VK_DOWN:
+			background.moveUp(background_panel, Constants.BACKGROUND_MOVE_SPEED);
+			Player.facing = facingDirection.DOWN;
+			break;
+		case KeyEvent.VK_LEFT:
+			background.moveRight(background_panel, Constants.BACKGROUND_MOVE_SPEED);
+			Player.facing = facingDirection.LEFT;
+			break;
+		case KeyEvent.VK_RIGHT:
+			background.moveLeft(background_panel, Constants.BACKGROUND_MOVE_SPEED);
+			Player.facing = facingDirection.RIGHT;
+			break;
+		/*
 		case KeyEvent.VK_UP:
 			player.moveUp(player_panel, Constants.PLAYER_STEP);
 			Player.facing = facingDirection.UP;
@@ -54,6 +72,7 @@ public class Keybindings {
 			player.moveRight(player_panel, Constants.PLAYER_STEP);
 			Player.facing = facingDirection.RIGHT;
 			break;
+		*/
 
 		case KeyEvent.VK_SPACE:
 			pre_time = buffer;

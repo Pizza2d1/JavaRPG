@@ -22,8 +22,9 @@ public class Player implements Movable {
 	
 	public Player(JLayeredPane layeredPane, JPanel player_panel, int z_layer) {
 		//player_panel.setBackground(new Color(255, 255, 255));
-		int startingPosx = (Constants.SCREEN_SIZE_X / 2) - (Constants.PLAYER_SIZE / 2);
-		int startingPosy = (Constants.SCREEN_SIZE_Y / 2) - (Constants.PLAYER_SIZE / 2);
+		int startingPosx = (Constants.SCREEN_SIZE_X  / 2) - ((Constants.PLAYER_SIZE / 2) + Constants.SWORD_DISTANCE/2);
+		int startingPosy = (Constants.SCREEN_SIZE_Y  / 2) - ((Constants.PLAYER_SIZE / 2) + Constants.SWORD_DISTANCE/2);
+		System.out.println(startingPosx + " " + startingPosy);
 		player_panel.setBounds(startingPosx, startingPosy, Constants.PLAYER_SIZE + Constants.SWORD_DISTANCE*2, Constants.PLAYER_SIZE + Constants.SWORD_DISTANCE*2);
 		layeredPane.setLayer(player_panel, z_layer);
 		layeredPane.add(player_panel);
