@@ -6,7 +6,10 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import enemyEncounter.EnemyEncounter;
-
+/**
+ * This class is mainly used as a test class to ensure my other files work.
+ * Contains two initiating methods for either spawning an enemy or beginning combat.
+ */
 public class TheGame extends JFrame {
 	private static int smallCount = 1;
 	private static int mediumCount = 1;
@@ -88,3 +91,4 @@ public class TheGame extends JFrame {
 	}
 
 }
+
