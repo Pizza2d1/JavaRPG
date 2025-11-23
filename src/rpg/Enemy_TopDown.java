@@ -7,11 +7,11 @@ import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 
 
-public class Enemy1 implements Movable {
+public class Enemy_TopDown implements Movable {
 
 	static JLabel enemy = new JLabel("");		
 
-	public Enemy1(JLayeredPane layeredPane, JPanel enemy_panel, int z_layer, int startx, int starty) {
+	public Enemy_TopDown(JLayeredPane layeredPane, JPanel enemy_panel, int z_layer, int startx, int starty) {
 		enemy_panel.setBackground(new Color(255, 255, 255));
 		int startingPosx = (Constants.WORLD_SIZE_X / 2) - (Constants.PLAYER_SIZE / 2);
 		int startingPosy = (Constants.WORLD_SIZE_Y / 2) - (Constants.PLAYER_SIZE / 2);
@@ -27,7 +27,7 @@ public class Enemy1 implements Movable {
 		enemy_panel.add(enemy);
 	}
 	 
-	public Enemy1(JLayeredPane layeredPane, JPanel enemy_panel, int z_layer) {
+	public Enemy_TopDown(JLayeredPane layeredPane, JPanel enemy_panel, int z_layer) {
 		enemy_panel.setBackground(new Color(255, 255, 255));
 		int startingPosx = (Constants.SCREEN_SIZE_X  / 2) - ((Constants.PLAYER_SIZE / 2) + Constants.SWORD_DISTANCE/2);
 		int startingPosy = (Constants.SCREEN_SIZE_Y  / 2) - ((Constants.PLAYER_SIZE / 2) + Constants.SWORD_DISTANCE/2);

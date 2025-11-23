@@ -1,6 +1,5 @@
 package rpg;
 
-import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 
 import javax.swing.JPanel;
@@ -61,18 +60,22 @@ public class Keybindings {
 		case KeyEvent.VK_UP:
 			player.moveUp(player_panel, Constants.PLAYER_STEP);
 			Player.facing = facingDirection.UP;
+			checkCollision();
 			break;
 		case KeyEvent.VK_DOWN:
 			player.moveDown(player_panel, Constants.PLAYER_STEP);
 			Player.facing = facingDirection.DOWN;
+			checkCollision();
 			break;
 		case KeyEvent.VK_LEFT:
 			player.moveLeft(player_panel, Constants.PLAYER_STEP);
 			Player.facing = facingDirection.LEFT;
+			checkCollision();
 			break;
 		case KeyEvent.VK_RIGHT:
 			player.moveRight(player_panel, Constants.PLAYER_STEP);
 			Player.facing = facingDirection.RIGHT;
+			checkCollision();
 			break;
 
 		case KeyEvent.VK_SPACE:
@@ -86,8 +89,8 @@ public class Keybindings {
 			    Thread taskThread = new Thread(() -> {
 					//Rectangle hurtbox = Player.swingSword(player_panel);
 					System.out.println(RPG_App.enemies.size());
-					for (Enemy1 enemy_ent : RPG_App.enemies) {
-						Player.checkHurtbox(Enemy1.enemy);
+					for (Enemy_TopDown enemy_ent : RPG_App.enemies) {
+						Player.checkHurtbox(Enemy_TopDown.enemy);
 					}
 			    });
 			    taskThread.start();
@@ -98,6 +101,12 @@ public class Keybindings {
 			break;
 		default:
 			break;
+		}
+	}
+	
+	public static void checkCollision() {
+		for (Enemy_TopDown enemy_ent : RPG_App.enemies) {
+			Player.checkHurtbox(Enemy_TopDown.enemy);
 		}
 	}
 }

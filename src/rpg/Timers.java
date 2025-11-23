@@ -22,8 +22,8 @@ public class Timers implements Runnable {
 	public void run() { // Using this run method is pretty much mandatory
 		State movement = State.DOWN; // Default facing
 
-		List<Enemy1> enemies = RPG_App.enemies;
-		Enemy1 test_enemy = RPG_App.test_enemy;
+		List<Enemy_TopDown> enemies = RPG_App.enemies;
+		Enemy_TopDown test_enemy = RPG_App.test_enemy;
 
 		JPanel enemies_panel = RPG_App.enemies_panel;
 
@@ -50,8 +50,8 @@ public class Timers implements Runnable {
 		
 		
 	}
-	public void stateMoveCircles(Enemy1 test_enemy, JPanel enemies_panel) {
+	public void stateMoveCircles(Enemy_TopDown test_enemy, JPanel enemies_panel) {
 	}
-	public void stateMoveDiagonals(Enemy1 test_enemy, JPanel enemies_panel) {
+	public void stateMoveDiagonals(Enemy_TopDown test_enemy, JPanel enemies_panel) {
 	}
 }

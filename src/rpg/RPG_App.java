@@ -39,8 +39,8 @@ public class RPG_App extends JFrame{
 	static JPanel player_panel = new JPanel();
 	static JPanel background_panel = new JPanel();
 	static JPanel enemies_panel = new JPanel();
-	static Enemy1 test_enemy;
-	static List<Enemy1> enemies = new ArrayList<>(Arrays.asList(test_enemy));
+	static Enemy_TopDown test_enemy;
+	static List<Enemy_TopDown> enemies = new ArrayList<>(Arrays.asList(test_enemy));
 	/**
 	 * Launch the application.
 	 */
@@ -81,8 +81,8 @@ public class RPG_App extends JFrame{
 		// Initialize the panels with z layer values
 		Background background = new Background(layeredPane, background_panel, 0, map);
 		Player player = new Player(layeredPane, player_panel, 1);
-		test_enemy = new Enemy1(layeredPane, enemies_panel, 1, 10, 10);
-		List<Enemy1> enemies = new ArrayList<>();
+		test_enemy = new Enemy_TopDown(layeredPane, enemies_panel, 1, 10, 10);
+		List<Enemy_TopDown> enemies = new ArrayList<>();
 		enemies.add(test_enemy);
 		new Keybindings(player, background);
 		//moveEnemies();

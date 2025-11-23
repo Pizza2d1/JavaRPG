@@ -8,6 +8,8 @@ import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 
+import guiCode.TheGame;
+
 public class Player implements Movable {
 	
 	enum facingDirection {
@@ -102,7 +104,7 @@ public class Player implements Movable {
 	}
 
 	
-	public static void checkHurtbox(JLabel enemy) {
+	public static void checkHurtbox(JLabel enemy) { // Can also be used to check sword and enemy hit/hurt boxes
 	    Point player_p = player.getLocationOnScreen();
 	    int x1 = player_p.x;
 	    int y1 = player_p.y + Constants.PLAYER_SIZE;
@@ -118,6 +120,7 @@ public class Player implements Movable {
 	    if ((x1 < x4) && (x3 < x2) && (y1 > y4) && (y3 > y2)) {
         // TODO trigger enemy encounter
 	    	System.out.println("Hit");
+	    	TheGame.main(null);;
 	    } else {
 	    	System.out.println("No Hit");
 	    }
