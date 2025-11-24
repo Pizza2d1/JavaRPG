@@ -103,7 +103,7 @@ public class Player implements Movable {
 		return sword.getBounds();
 	}
 
-	
+	//ProcessBuilder pb = new ProcessBuilder("java", "guiCode.TheGame.main");
 	public static void checkHurtbox(JLabel enemy) { // Can also be used to check sword and enemy hit/hurt boxes
 	    Point player_p = player.getLocationOnScreen();
 	    int x1 = player_p.x;
@@ -120,7 +120,8 @@ public class Player implements Movable {
 	    if ((x1 < x4) && (x3 < x2) && (y1 > y4) && (y3 > y2)) {
         // TODO trigger enemy encounter
 	    	System.out.println("Hit");
-	    	TheGame.main(null);;
+	    	guiCode.TheGame.main(new String[0]);;
+	    	//Process process = pb.start();   
 	    } else {
 	    	System.out.println("No Hit");
 	    }
