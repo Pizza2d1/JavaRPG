@@ -120,11 +120,15 @@ public class Player implements Movable {
 	    if ((x1 < x4) && (x3 < x2) && (y1 > y4) && (y3 > y2)) {
         // TODO trigger enemy encounter
 	    	System.out.println("Hit");
-	    	TheGame.main(null);;
+	    	String[] args = {};
+	    	TheGame.main(args);
+	    	//int status = JavaProcess.exec(TheGame.main(args));
 	    } else {
 	    	System.out.println("No Hit");
 	    }
 	}
+	
+	
 
 
 }

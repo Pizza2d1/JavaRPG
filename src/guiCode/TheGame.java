@@ -15,7 +15,7 @@ public class TheGame extends JFrame {
 	private static int mediumCount = 1;
 	private static int largeCount = 1;
 	private static final long serialVersionUID = 1L;
-	private static JPanel contentPane;
+	private static JPanel contentPane = new JPanel();
 
 	/**
 	 * Launch the application.
@@ -53,7 +53,6 @@ public class TheGame extends JFrame {
 	public TheGame() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
-		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		
