@@ -22,9 +22,16 @@ public class Background implements Movable {
 	// }
 	// }
 
+	boolean test = false;
+
 	public Background(JLayeredPane layeredPane, JPanel background_panel, int z_layer, String map) {
-		background_panel.setBounds((Constants.SCREEN_SIZE_X - Constants.WORLD_SIZE_X) / 2,
-				(Constants.SCREEN_SIZE_X - Constants.WORLD_SIZE_Y) / 2, Constants.WORLD_SIZE_X, Constants.WORLD_SIZE_Y);
+		if (test) {
+			background_panel.setBounds((Constants.SCREEN_SIZE_X - Constants.WORLD_SIZE_X) / 2,
+					(Constants.SCREEN_SIZE_X - Constants.WORLD_SIZE_Y) / 2, Constants.WORLD_SIZE_X,
+					Constants.WORLD_SIZE_Y);
+		} else {
+			background_panel.setBounds(0, 0, Constants.WORLD_SIZE_X, Constants.WORLD_SIZE_Y);
+		}
 		layeredPane.setLayer(background_panel, z_layer);
 		layeredPane.add(background_panel);
 		background_panel.setLayout(null);
@@ -52,6 +59,12 @@ public class Background implements Movable {
 					break;
 				case "S":
 					BGIcon = Constants.backgroundsrc;
+					break;
+				case "A":
+					BGIcon = Constants.sand;
+					break;
+				case "G":
+					BGIcon = Constants.grass;
 					break;
 				default:
 					BGIcon = Constants.backgroundsrc;

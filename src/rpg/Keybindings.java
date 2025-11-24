@@ -1,6 +1,8 @@
 package rpg;
 
+import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
+import java.io.IOException;
 
 import javax.swing.JPanel;
 
@@ -17,13 +19,15 @@ public class Keybindings {
 	
 	static Player player;
 	static Background background;
+	static Enemy_TopDown enemy;
 	
-	public Keybindings(Player player, Background background) {
+	public Keybindings(Player player, Background background, Enemy_TopDown enemy) {
 		Keybindings.player = player;
 		Keybindings.background = background;
+		Keybindings.enemy = enemy;
 	}
 	
-	static void action(int keyCode, JPanel background_panel, JPanel player_panel) {
+	static void action(int keyCode, JPanel background_panel, JPanel player_panel, JPanel enemies_panel) throws IOException {
 		switch (keyCode) {
 		case KeyEvent.VK_W:
 			background.moveUp(background_panel, Constants.BACKGROUND_MOVE_SPEED);
@@ -38,25 +42,33 @@ public class Keybindings {
 			background.moveRight(background_panel, Constants.BACKGROUND_MOVE_SPEED);
 			break;
 		
-		/*
+		
 		case KeyEvent.VK_UP:
+			enemy.moveDown(enemies_panel, Constants.BACKGROUND_MOVE_SPEED);
 			background.moveDown(background_panel, Constants.BACKGROUND_MOVE_SPEED);
 			Player.facing = facingDirection.UP;
+			checkCollision();
 			break;
 		case KeyEvent.VK_DOWN:
+			enemy.moveUp(enemies_panel, Constants.BACKGROUND_MOVE_SPEED);
 			background.moveUp(background_panel, Constants.BACKGROUND_MOVE_SPEED);
 			Player.facing = facingDirection.DOWN;
+			checkCollision();
 			break;
 		case KeyEvent.VK_LEFT:
+			enemy.moveRight(enemies_panel, Constants.BACKGROUND_MOVE_SPEED);
 			background.moveRight(background_panel, Constants.BACKGROUND_MOVE_SPEED);
 			Player.facing = facingDirection.LEFT;
+			checkCollision();
 			break;
 		case KeyEvent.VK_RIGHT:
+			enemy.moveLeft(enemies_panel, Constants.BACKGROUND_MOVE_SPEED);
 			background.moveLeft(background_panel, Constants.BACKGROUND_MOVE_SPEED);
 			Player.facing = facingDirection.RIGHT;
+			checkCollision();
 			break;
-		*/
-
+		
+		/*
 		case KeyEvent.VK_UP:
 			player.moveUp(player_panel, Constants.PLAYER_STEP);
 			Player.facing = facingDirection.UP;
@@ -77,6 +89,7 @@ public class Keybindings {
 			Player.facing = facingDirection.RIGHT;
 			checkCollision();
 			break;
+		*/
 
 		case KeyEvent.VK_SPACE:
 			pre_time = buffer;
@@ -87,10 +100,16 @@ public class Keybindings {
 				//System.out.println("Too fast");
 			} else {
 			    Thread taskThread = new Thread(() -> {
-					//Rectangle hurtbox = Player.swingSword(player_panel);
+					Rectangle hurtbox = Player.swingSword(player_panel);
 					System.out.println(RPG_App.enemies.size());
-					for (Enemy_TopDown enemy_ent : RPG_App.enemies) {
-						Player.checkHurtbox(Enemy_TopDown.enemy);
+					for (int i = 0; i < RPG_App.enemies.size(); i++) {
+					//for (Enemy_TopDown enemy_ent : RPG_App.enemies) {
+						try {
+							Player.checkHurtbox(Enemy_TopDown.enemy);
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
 					}
 			    });
 			    taskThread.start();
@@ -104,7 +123,7 @@ public class Keybindings {
 		}
 	}
 	
-	public static void checkCollision() {
+	public static void checkCollision() throws IOException {
 		for (Enemy_TopDown enemy_ent : RPG_App.enemies) {
 			Player.checkHurtbox(Enemy_TopDown.enemy);
 		}

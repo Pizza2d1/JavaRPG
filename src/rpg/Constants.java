@@ -12,6 +12,7 @@ public class Constants {
 
 	
 	// PLAYER
+	final static ImageIcon PLAYER_ICON = new ImageIcon(Background.class.getResource("/rpg/sprites/bk.png"));
 	final static int PLAYER_STEP = 20;
 	final static int PLAYER_SIZE = 40;
 	final static int SWORD_DISTANCE = 40;
@@ -25,9 +26,15 @@ public class Constants {
 	
 	final static ImageIcon blue = new ImageIcon(Background.class.getResource("/rpg/sprites/blue.png"));
 	final static ImageIcon red = new ImageIcon(Background.class.getResource("/rpg/sprites/red.png"));
+	final static ImageIcon sand = new ImageIcon(Background.class.getResource("/rpg/sprites/sand.png"));
+	final static ImageIcon grass = new ImageIcon(Background.class.getResource("/rpg/sprites/grass.png"));
 	final static ImageIcon bk = new ImageIcon(Background.class.getResource("/rpg/sprites/papa.png"));
 	final static ImageIcon rc = new ImageIcon(Background.class.getResource("/rpg/sprites/rcircle.png"));
-	final static ImageIcon sword = new ImageIcon(Background.class.getResource("/rpg/sprites/slash1.png"));
+	final static ImageIcon swordR = new ImageIcon(Background.class.getResource("/rpg/sprites/slash1.png"));
+	final static ImageIcon swordL = new ImageIcon(Background.class.getResource("/rpg/sprites/slash2.png"));
+	final static ImageIcon swordU = new ImageIcon(Background.class.getResource("/rpg/sprites/slash3.png"));
+	final static ImageIcon swordD = new ImageIcon(Background.class.getResource("/rpg/sprites/slash4.png"));
+
 
 
 

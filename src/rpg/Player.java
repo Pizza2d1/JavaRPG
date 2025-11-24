@@ -3,6 +3,7 @@ package rpg;
 import java.awt.Color;
 import java.awt.Point;
 import java.awt.Rectangle;
+import java.io.IOException;
 
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
@@ -36,9 +37,9 @@ public class Player implements Movable {
 		player_panel.setLayout(null);
 
 		player.setBounds(Constants.SWORD_DISTANCE, Constants.SWORD_DISTANCE, Constants.PLAYER_SIZE, Constants.PLAYER_SIZE);
-		player.setIcon(Constants.blue);
+		player.setIcon(Constants.PLAYER_ICON);
 		sword.setBounds(Constants.SWORD_SIZE, Constants.SWORD_SIZE, Constants.SWORD_SIZE, Constants.SWORD_SIZE);
-		sword.setIcon(Constants.red);
+		sword.setIcon(Constants.swordR);
 		sword.setVisible(false);
 		player_panel.setOpaque(false);
 		player_panel.add(player);
@@ -54,9 +55,9 @@ public class Player implements Movable {
 		player_panel.setLayout(null);
 
 		player.setBounds(Constants.SWORD_DISTANCE, Constants.SWORD_DISTANCE, Constants.PLAYER_SIZE, Constants.PLAYER_SIZE);
-		player.setIcon(Constants.blue);
+		player.setIcon(Constants.PLAYER_ICON);
 		sword.setBounds(Constants.SWORD_SIZE, Constants.SWORD_SIZE, Constants.SWORD_SIZE, Constants.SWORD_SIZE);
-		sword.setIcon(Constants.red);
+		sword.setIcon(Constants.swordR);
 		sword.setVisible(false);
 		player_panel.setOpaque(false);
 		player_panel.add(player);
@@ -68,7 +69,6 @@ public class Player implements Movable {
 	 */
 	
 	static Rectangle swingSword(JPanel player) {
-		sword.setIcon(Constants.red);
 		int pointx = Constants.SWORD_DISTANCE; // Where the player is located in reference to player_panel
 		int pointy = Constants.SWORD_DISTANCE;
 		int changex = (Constants.PLAYER_SIZE-Constants.SWORD_SIZE_X)/2; // Needed to decide where to put the sword in case its a different size than the player
@@ -80,18 +80,22 @@ public class Player implements Movable {
 
 		switch (facing) {
 		case facingDirection.UP:
+			sword.setIcon(Constants.swordU);
 			sword.setBounds(pointx+changex+tweak, pointy-Constants.SWORD_DISTANCE+changey-dis_offset, Constants.SWORD_SIZE_X, Constants.SWORD_SIZE_Y);
 			//System.out.println("facing up");
 			break;
 		case facingDirection.DOWN:
+			sword.setIcon(Constants.swordD);
 			sword.setBounds(pointx+changex+tweak, pointy+Constants.SWORD_DISTANCE+changey+dis_offset, Constants.SWORD_SIZE_X, Constants.SWORD_SIZE_Y);
 			//System.out.println("facing down");
 			break;
 		case facingDirection.LEFT:
+			sword.setIcon(Constants.swordL);
 			sword.setBounds(pointx-Constants.SWORD_DISTANCE+changey-dis_offset, pointy+changex, Constants.SWORD_SIZE_Y, Constants.SWORD_SIZE_X);
 			//System.out.println("facing left");
 			break;
 		case facingDirection.RIGHT:
+			sword.setIcon(Constants.swordR);
 			sword.setBounds(pointx+Constants.SWORD_DISTANCE+changey+dis_offset, pointy+changex, Constants.SWORD_SIZE_Y, Constants.SWORD_SIZE_X);
 			//System.out.println("facing right");
 			break;
@@ -103,8 +107,11 @@ public class Player implements Movable {
 		return sword.getBounds();
 	}
 
+	static ProcessBuilder builder = new ProcessBuilder("java", "-cp", "bin", "guiCode.TheGame");
+	static Process process;
+	static boolean check_for_process = false;
 	
-	public static void checkHurtbox(JLabel enemy) { // Can also be used to check sword and enemy hit/hurt boxes
+	public static void checkHurtbox(JLabel enemy) throws IOException { // Can also be used to check sword and enemy hit/hurt boxes
 	    Point player_p = player.getLocationOnScreen();
 	    int x1 = player_p.x;
 	    int y1 = player_p.y + Constants.PLAYER_SIZE;
@@ -119,12 +126,23 @@ public class Player implements Movable {
 	    
 	    if ((x1 < x4) && (x3 < x2) && (y1 > y4) && (y3 > y2)) {
         // TODO trigger enemy encounter
-	    	System.out.println("Hit");
+	    	//System.out.println("Hit");
 	    	String[] args = {};
-	    	TheGame.main(args);
+	    	//TheGame.main(args);
+	    	process = builder.start();
+	    	check_for_process=true;
+	    	//new Thread(() -> TheGame.main(args)).start();   
 	    	//int status = JavaProcess.exec(TheGame.main(args));
 	    } else {
-	    	System.out.println("No Hit");
+	    	//System.out.println("No Hit");
+	    	if (check_for_process) {
+	    		if (!process.isAlive()) {
+	    			System.out.println("You win!");
+	    			enemy.setIcon(null);
+	    			enemy.setLocation(-100, -100);
+	    			check_for_process=false;
+	    		}
+	    	}
 	    }
 	}
 	

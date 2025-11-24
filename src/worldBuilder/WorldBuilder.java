@@ -29,6 +29,8 @@ public class WorldBuilder extends JFrame {
 	ImageIcon source = new ImageIcon(WorldBuilder.class.getResource("/rpg/sprites/source.png"));
 	ImageIcon blue = new ImageIcon(WorldBuilder.class.getResource("/rpg/sprites/blue.png"));
 	ImageIcon red = new ImageIcon(WorldBuilder.class.getResource("/rpg/sprites/red.png"));
+	ImageIcon sand = new ImageIcon(WorldBuilder.class.getResource("/rpg/sprites/sand.png"));
+	ImageIcon grass = new ImageIcon(WorldBuilder.class.getResource("/rpg/sprites/grass.png"));
 
 	/**
 	 * Launch the application.
@@ -100,6 +102,12 @@ public class WorldBuilder extends JFrame {
 				case "source.png":
 					IconID = 'S';
 					break;
+				case "sand.png":
+					IconID = 'A';
+					break;
+				case "grass.png":
+					IconID = 'G';
+					break;
 				}
 
 				output.append(String.format("%d_%d_%s", x, y, IconID));
@@ -116,7 +124,7 @@ public class WorldBuilder extends JFrame {
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setBounds(x, y, BLOCK_SIZE, BLOCK_SIZE);
 		if (!test)
-			lblNewLabel.setIcon(source); // Set default block
+			lblNewLabel.setIcon(grass); // Set default block
 		panel.add(lblNewLabel);
 		return lblNewLabel;
 	}
@@ -141,6 +149,10 @@ public class WorldBuilder extends JFrame {
 		} else if (block.getIcon().equals(blue)) {
 			block.setIcon(red);
 		} else if (block.getIcon().equals(red)) {
+			block.setIcon(grass);
+		} else if (block.getIcon().equals(grass)) {
+			block.setIcon(sand);
+		} else if (block.getIcon().equals(sand)) {
 			block.setIcon(source);
 		}
 
