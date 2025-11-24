@@ -29,6 +29,8 @@ public class Constants {
 	final static ImageIcon sand = new ImageIcon(Background.class.getResource("/rpg/sprites/sand.png"));
 	final static ImageIcon grass = new ImageIcon(Background.class.getResource("/rpg/sprites/grass.png"));
 	final static ImageIcon bk = new ImageIcon(Background.class.getResource("/rpg/sprites/papa.png"));
+	final static ImageIcon wolf = new ImageIcon(Background.class.getResource("/rpg/sprites/wolfTD.png"));	
+	final static ImageIcon rat = new ImageIcon(Background.class.getResource("/rpg/sprites/ratTD.png"));	
 	final static ImageIcon rc = new ImageIcon(Background.class.getResource("/rpg/sprites/rcircle.png"));
 	final static ImageIcon swordR = new ImageIcon(Background.class.getResource("/rpg/sprites/slash1.png"));
 	final static ImageIcon swordL = new ImageIcon(Background.class.getResource("/rpg/sprites/slash2.png"));

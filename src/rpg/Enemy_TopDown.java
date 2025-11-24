@@ -21,7 +21,7 @@ public class Enemy_TopDown implements Movable {
 		enemy_panel.setLayout(null);
 
 		enemy.setBounds(startx, starty, Constants.ENEMY_SIZE,Constants.ENEMY_SIZE);
-		enemy.setIcon(Constants.blue);
+		enemy.setIcon(Constants.wolf);
 
 		enemy_panel.setOpaque(false);
 		enemy_panel.add(enemy);
@@ -37,7 +37,7 @@ public class Enemy_TopDown implements Movable {
 		enemy_panel.setLayout(null);
 
 		enemy.setBounds(startingPosx, startingPosy, Constants.ENEMY_SIZE,Constants.ENEMY_SIZE);
-		enemy.setIcon(Constants.blue);
+		enemy.setIcon(Constants.wolf);
 
 		enemy_panel.setOpaque(false);
 		enemy_panel.add(enemy);
