@@ -5,10 +5,25 @@ import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class JavaProcess.
+ */
 public final class JavaProcess {
 
+    /**
+     * Instantiates a new java process.
+     */
     private JavaProcess() {}        
 
+    /**
+     * Exec.
+     *
+     * @param object the object
+     * @return the int
+     * @throws IOException Signals that an I/O exception has occurred.
+     * @throws InterruptedException the interrupted exception
+     */
     public static int exec(Object object) throws IOException,
                                                InterruptedException {
         String javaHome = System.getProperty("java.home");

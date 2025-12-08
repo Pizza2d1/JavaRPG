@@ -246,8 +246,8 @@ public class EnemyEncounter extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				game.getPlayer().setXP(EnemyEncounter.getEnemy().getXPYield());
 				EnemyEncounter.getInstance().dispose();
-				game.encounter(1, "Small");
-				game.getPlayer().setXP(50);
+				//game.encounter(1, "Small");
+				//game.getPlayer().setXP(50);
 				playerTurn = true;
 			}
 		});

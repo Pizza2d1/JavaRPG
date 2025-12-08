@@ -5,6 +5,10 @@ import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Background.
+ */
 public class Background implements Movable {
 
 	// public Background(JLayeredPane layeredPane, JPanel background_panel, int
@@ -24,6 +28,14 @@ public class Background implements Movable {
 
 	boolean test = false;
 
+	/**
+	 * Instantiates a new background.
+	 *
+	 * @param layeredPane      the layered pane
+	 * @param background_panel the background panel
+	 * @param z_layer          the z layer
+	 * @param map              the map
+	 */
 	public Background(JLayeredPane layeredPane, JPanel background_panel, int z_layer, String map) {
 		if (test) {
 			background_panel.setBounds((Constants.SCREEN_SIZE_X - Constants.WORLD_SIZE_X) / 2,
@@ -82,15 +94,19 @@ public class Background implements Movable {
 		}
 	}
 
+	/**
+	 * Background block that is rendered.
+	 *
+	 * @param panel the panel
+	 * @param x     the x
+	 * @param y     the y
+	 * @param icon  the icon
+	 */
 	private void backgroundPiece(JPanel panel, int x, int y, Icon icon) {
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setBounds(x, y, 20, 20);
 		lblNewLabel.setIcon(icon);
 		panel.add(lblNewLabel);
 	}
-
-	/*
-	 * METHODS GO HERE
-	 */
 
 }

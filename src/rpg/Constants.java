@@ -2,6 +2,10 @@ package rpg;
 
 import javax.swing.ImageIcon;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Constants.
+ */
 public class Constants {
 	
 	// GLOBAL
@@ -22,8 +26,6 @@ public class Constants {
 	final static int SWING_TIME = 400; // In milliseconds
 
 
-
-	
 	final static ImageIcon blue = new ImageIcon(Background.class.getResource("/rpg/sprites/blue.png"));
 	final static ImageIcon red = new ImageIcon(Background.class.getResource("/rpg/sprites/red.png"));
 	final static ImageIcon sand = new ImageIcon(Background.class.getResource("/rpg/sprites/sand.png"));
@@ -37,14 +39,10 @@ public class Constants {
 	final static ImageIcon swordU = new ImageIcon(Background.class.getResource("/rpg/sprites/slash3.png"));
 	final static ImageIcon swordD = new ImageIcon(Background.class.getResource("/rpg/sprites/slash4.png"));
 
-
-
-
 	
 	// BACKGROUND
 	final static int BACKGROUND_MOVE_SPEED = 10;
 	final static int BLOCK_SIZE = 20;
-	
 	final static ImageIcon backgroundsrc = new ImageIcon(Background.class.getResource("/rpg/sprites/source.png"));
 
 	

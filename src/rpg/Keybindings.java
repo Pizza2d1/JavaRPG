@@ -8,25 +8,44 @@ import javax.swing.JPanel;
 
 import rpg.Player.facingDirection;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Keybindings.
+ */
 public class Keybindings {
 	 /*
 	 * Add buffered inputs for attacking. Add detection for holding down a key to keep moving at a constant pace (not worrying about acceleration)
 	 */
-	// List of keyevents: https://docs.oracle.com/javase/7/docs/api/java/awt/event/KeyEvent.html
+ 	// List of keyevents: https://docs.oracle.com/javase/7/docs/api/java/awt/event/KeyEvent.html
 	static int buffer = RPG_App.getCurrentMilliseconds();
 	static int pre_time;
 	static int new_time;
-	
 	static Player player;
 	static Background background;
 	static Enemy_TopDown enemy;
 	
+	/**
+	 * Instantiates a new keybindings.
+	 *
+	 * @param player the player
+	 * @param background the background
+	 * @param enemy the enemy
+	 */
 	public Keybindings(Player player, Background background, Enemy_TopDown enemy) {
 		Keybindings.player = player;
 		Keybindings.background = background;
 		Keybindings.enemy = enemy;
 	}
 	
+	/**
+	 * Action.
+	 *
+	 * @param keyCode the key code
+	 * @param background_panel the background panel
+	 * @param player_panel the player panel
+	 * @param enemies_panel the enemies panel
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 	static void action(int keyCode, JPanel background_panel, JPanel player_panel, JPanel enemies_panel) throws IOException {
 		switch (keyCode) {
 		case KeyEvent.VK_W:
@@ -123,6 +142,11 @@ public class Keybindings {
 		}
 	}
 	
+	/**
+	 * Check collision.
+	 *
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 	public static void checkCollision() throws IOException {
 		for (Enemy_TopDown enemy_ent : RPG_App.enemies) {
 			Player.checkHurtbox(Enemy_TopDown.enemy);

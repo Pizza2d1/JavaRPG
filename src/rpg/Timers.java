@@ -6,18 +6,40 @@ import java.util.List;
 import javax.swing.JPanel;
 
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Timers.
+ */
 public class Timers implements Runnable {
 
+	/**
+	 * The Enum State.
+	 */
 	enum State {
+		
+		/** The circling. */
 		CIRCLING,
+		
+		/** The diamond. */
 		DIAMOND,
+		
+		/** The up. */
 		UP,
+		
+		/** The down. */
 		DOWN,
+		
+		/** The left. */
 		LEFT,
+		
+		/** The right. */
 		RIGHT
 	}
 	
 	
+	/**
+	 * Run.
+	 */
 	@Override
 	public void run() { // Using this run method is pretty much mandatory
 		State movement = State.LEFT; // Default facing
@@ -49,8 +71,22 @@ public class Timers implements Runnable {
 		
 		
 	}
+	
+	/**
+	 * State move circles.
+	 *
+	 * @param test_enemy the test enemy
+	 * @param enemies_panel the enemies panel
+	 */
 	public void stateMoveCircles(Enemy_TopDown test_enemy, JPanel enemies_panel) {
 	}
+	
+	/**
+	 * State move diagonals.
+	 *
+	 * @param test_enemy the test enemy
+	 * @param enemies_panel the enemies panel
+	 */
 	public void stateMoveDiagonals(Enemy_TopDown test_enemy, JPanel enemies_panel) {
 	}
 }

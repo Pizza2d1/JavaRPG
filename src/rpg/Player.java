@@ -11,8 +11,16 @@ import javax.swing.JPanel;
 
 import guiCode.TheGame;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Player.
+ */
 public class Player implements Movable {
 	
+	/**
+	 * The Enum facingDirection.
+   * For knowing where the player is currently facing, changing how they swing their sword
+	 */
 	enum facingDirection {
 		UP,
 		DOWN,
@@ -20,12 +28,28 @@ public class Player implements Movable {
 		RIGHT
 	}
 
+	/** The player. */
 	static JLabel player = new JLabel("");		
+	
+	/** The sword. */
 	static JLabel sword = new JLabel("");
+	
+	/** The facing. */
 	static facingDirection facing = facingDirection.UP; // Default facing
+	
+	/** The starting pos X. */
 	int startingPosX;
+	
+	/** The starting pos Y. */
 	int startingPosY;
 	
+	/**
+	 * Instantiates a new player.
+	 *
+	 * @param layeredPane the layered pane
+	 * @param player_panel the player panel
+	 * @param z_layer the z layer
+	 */
 	public Player(JLayeredPane layeredPane, JPanel player_panel, int z_layer) {
 		//player_panel.setBackground(new Color(255, 255, 255));
 		int startingPosx = (Constants.SCREEN_SIZE_X  / 2) - ((Constants.PLAYER_SIZE / 2) + Constants.SWORD_DISTANCE/2);
@@ -46,6 +70,16 @@ public class Player implements Movable {
 		player_panel.add(sword);
 
 	}
+	
+	/**
+	 * Instantiates a new player.
+	 *
+	 * @param layeredPane the layered pane
+	 * @param player_panel the player panel
+	 * @param z_layer the z layer
+	 * @param startingPosx the starting posx
+	 * @param startingPosy the starting posy
+	 */
 	// This ones for testing positions
 	public Player(JLayeredPane layeredPane, JPanel player_panel, int z_layer, int startingPosx, int startingPosy) {
 		player_panel.setBackground(new Color(255, 255, 255));
@@ -68,6 +102,12 @@ public class Player implements Movable {
 	 * METHODS GO HERE
 	 */
 	
+	/**
+	 * Swing sword.
+	 *
+	 * @param player the player
+	 * @return the rectangle
+	 */
 	static Rectangle swingSword(JPanel player) {
 		int pointx = Constants.SWORD_DISTANCE; // Where the player is located in reference to player_panel
 		int pointy = Constants.SWORD_DISTANCE;
@@ -81,12 +121,12 @@ public class Player implements Movable {
 		switch (facing) {
 		case facingDirection.UP:
 			sword.setIcon(Constants.swordU);
-			sword.setBounds(pointx+changex+tweak, pointy-Constants.SWORD_DISTANCE+changey-dis_offset, Constants.SWORD_SIZE_X, Constants.SWORD_SIZE_Y);
+			sword.setBounds(pointx+changex+tweak+20, pointy-Constants.SWORD_DISTANCE+changey-dis_offset, Constants.SWORD_SIZE_X, Constants.SWORD_SIZE_Y);
 			//System.out.println("facing up");
 			break;
 		case facingDirection.DOWN:
 			sword.setIcon(Constants.swordD);
-			sword.setBounds(pointx+changex+tweak, pointy+Constants.SWORD_DISTANCE+changey+dis_offset, Constants.SWORD_SIZE_X, Constants.SWORD_SIZE_Y);
+			sword.setBounds(pointx+changex+tweak+20, pointy+Constants.SWORD_DISTANCE+changey+dis_offset, Constants.SWORD_SIZE_X, Constants.SWORD_SIZE_Y);
 			//System.out.println("facing down");
 			break;
 		case facingDirection.LEFT:
@@ -107,10 +147,21 @@ public class Player implements Movable {
 		return sword.getBounds();
 	}
 
+	/** The builder. */
 	static ProcessBuilder builder = new ProcessBuilder("java", "-cp", "bin", "guiCode.TheGame");
+	
+	/** The process. */
 	static Process process;
+	
+	/** The check for process. */
 	static boolean check_for_process = false;
 	
+	/**
+	 * Check hurtbox.
+	 *
+	 * @param enemy the enemy
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 	public static void checkHurtbox(JLabel enemy) throws IOException { // Can also be used to check sword and enemy hit/hurt boxes
 	    Point player_p = player.getLocationOnScreen();
 	    int x1 = player_p.x;

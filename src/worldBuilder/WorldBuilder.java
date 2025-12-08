@@ -17,26 +17,58 @@ import javax.swing.border.EmptyBorder;
 
 import javax.swing.ImageIcon;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class WorldBuilder.
+ */
 public class WorldBuilder extends JFrame {
 
+	/** The test. */
 	static boolean test = false;
+
+	/** The map key. */
 	private int map_key = 1;
 
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
+
+	/** The content pane. */
 	private JPanel contentPane;
+
+	/** The world size x. */
 	private int WORLD_SIZE_X = 1600;
+
+	/** The world size y. */
 	private int WORLD_SIZE_Y = 1000;
+
+	/** The block size. */
 	private int BLOCK_SIZE = 20;
+
+	/** The width. */
 	private int WIDTH = WORLD_SIZE_X / BLOCK_SIZE; // For indexing hashmap
+
+	/** The map. */
 	Map<Integer, JLabel> map = new HashMap<>();
+
+	/** The source. */
 	ImageIcon source = new ImageIcon(WorldBuilder.class.getResource("/rpg/sprites/source.png"));
+
+	/** The blue. */
 	ImageIcon blue = new ImageIcon(WorldBuilder.class.getResource("/rpg/sprites/blue.png"));
+
+	/** The red. */
 	ImageIcon red = new ImageIcon(WorldBuilder.class.getResource("/rpg/sprites/red.png"));
+
+	/** The sand. */
 	ImageIcon sand = new ImageIcon(WorldBuilder.class.getResource("/rpg/sprites/sand.png"));
+
+	/** The grass. */
 	ImageIcon grass = new ImageIcon(WorldBuilder.class.getResource("/rpg/sprites/grass.png"));
 
 	/**
 	 * Launch the application.
+	 *
+	 * @param args the arguments
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -85,6 +117,11 @@ public class WorldBuilder extends JFrame {
 		// System.out.println(getMap());
 	}
 
+	/**
+	 * Gets the map.
+	 *
+	 * @return the map
+	 */
 	private String getMap() {
 		StringBuilder output = new StringBuilder();
 		int pos = 0;
@@ -123,6 +160,14 @@ public class WorldBuilder extends JFrame {
 		return outputstr;
 	}
 
+	/**
+	 * Background piece.
+	 *
+	 * @param panel the panel
+	 * @param x     the x
+	 * @param y     the y
+	 * @return the j label
+	 */
 	private JLabel backgroundPiece(JPanel panel, int x, int y) {
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setBounds(x, y, BLOCK_SIZE, BLOCK_SIZE);
@@ -132,18 +177,43 @@ public class WorldBuilder extends JFrame {
 		return lblNewLabel;
 	}
 
+	/**
+	 * Gets the index.
+	 *
+	 * @param x the x
+	 * @param y the y
+	 * @return the index
+	 */
 	private int getIndex(int x, int y) {
 		return (x + (y * WIDTH));
 	}
 
+	/**
+	 * Gets the x.
+	 *
+	 * @param index the index
+	 * @return the x
+	 */
 	private int getX(int index) {
 		return index % WIDTH;
 	}
 
+	/**
+	 * Gets the y.
+	 *
+	 * @param index the index
+	 * @return the y
+	 */
 	private int getY(int index) {
 		return (index - (index % WIDTH)) / WIDTH;
 	}
 
+	/**
+	 * Change block.
+	 *
+	 * @param x the x
+	 * @param y the y
+	 */
 	private void changeBlock(int x, int y) {
 		JLabel block = map.get(getIndex(Math.floorDiv(x, BLOCK_SIZE), Math.floorDiv(y, BLOCK_SIZE)));
 
@@ -175,6 +245,11 @@ public class WorldBuilder extends JFrame {
 
 	}
 
+	/**
+	 * Mouse.
+	 *
+	 * @param contentPane the content pane
+	 */
 	private void mouse(JPanel contentPane) {
 		contentPane.addMouseListener(new MouseListener() {
 			@Override

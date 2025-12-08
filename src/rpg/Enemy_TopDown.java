@@ -7,10 +7,24 @@ import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Enemy_TopDown.
+ */
 public class Enemy_TopDown implements Movable {
 
+	/** The enemy. */
 	static JLabel enemy = new JLabel("");		
 
+	/**
+	 * Instantiates a new enemy top down.
+	 *
+	 * @param layeredPane the layered pane
+	 * @param enemy_panel the enemy panel
+	 * @param z_layer the z layer
+	 * @param startx the startx
+	 * @param starty the starty
+	 */
 	public Enemy_TopDown(JLayeredPane layeredPane, JPanel enemy_panel, int z_layer, int startx, int starty) {
 		enemy_panel.setBackground(new Color(255, 255, 255));
 		int startingPosx = (Constants.WORLD_SIZE_X / 2) - (Constants.PLAYER_SIZE / 2);
@@ -27,6 +41,13 @@ public class Enemy_TopDown implements Movable {
 		enemy_panel.add(enemy);
 	}
 	 
+	/**
+	 * Instantiates a new enemy top down.
+	 *
+	 * @param layeredPane the layered pane
+	 * @param enemy_panel the enemy panel
+	 * @param z_layer the z layer
+	 */
 	public Enemy_TopDown(JLayeredPane layeredPane, JPanel enemy_panel, int z_layer) {
 		enemy_panel.setBackground(new Color(255, 255, 255));
 		int startingPosx = (Constants.SCREEN_SIZE_X  / 2) - ((Constants.PLAYER_SIZE / 2) + Constants.SWORD_DISTANCE/2);
