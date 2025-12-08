@@ -5,6 +5,8 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.WindowEvent;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,6 +20,7 @@ import javax.swing.ImageIcon;
 public class WorldBuilder extends JFrame {
 
 	static boolean test = false;
+	private int map_key = 1;
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -156,8 +159,19 @@ public class WorldBuilder extends JFrame {
 			block.setIcon(source);
 		}
 
-		System.out.println();
-		System.out.println(getMap());
+		// System.out.println();
+
+		File file = new File(String.format("map_%d.txt", map_key));
+		try {
+			PrintWriter writer = new PrintWriter(file);
+			writer.println(getMap());
+			writer.close();
+		} catch (FileNotFoundException e) {
+			System.out.println("File not found");
+			e.printStackTrace();
+		}
+
+		// System.out.println(getMap());
 
 	}
 
