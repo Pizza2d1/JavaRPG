@@ -5,8 +5,8 @@ package teamProject;
 public abstract class SmallEnemy extends Enemy{
 	private static int count;
 	
-	protected SmallEnemy(int hp, int def, int att, int move) {
-		super(hp, def, att, move);
+	protected SmallEnemy(int hp, int def, int att, int move, boolean resFire, boolean resIce) {
+		super(hp, def, att, move, resFire, resIce);
 		if(count < 10) {
 			count++;
 		}
