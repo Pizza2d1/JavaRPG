@@ -38,11 +38,11 @@ public class SmallEnemyGui extends JPanel {
 	 * @param The same one enemy class is passed between classes.
 	 */
 	public SmallEnemyGui(Enemy enemy) {
-		if(enemy.getClass().getSimpleName().equals("Rat")) {
+		if(enemy instanceof Rat) {
 			ratEncounter(enemy);
-		}else if(enemy.getClass().getSimpleName().equals("Spider")) {
+		}else if(enemy instanceof Spider) {
 			spiderEncounter(enemy);
-		}else if(enemy.getClass().getSimpleName().equals("Wolf")) {
+		}else if(enemy instanceof Wolf) {
 			wolfEncounter(enemy);
 		}
 	}

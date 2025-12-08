@@ -36,11 +36,11 @@ public class LargeEnemyGui extends JPanel {
 	 * @param The same one enemy class is passed between classes.
 	 */
 	public LargeEnemyGui(Enemy enemy) {
-		if(enemy.getClass().getSimpleName().equals("Ogre")) {
+		if(enemy instanceof Ogre) {
 			ogreEncounter(enemy);
-		}else if(enemy.getClass().getSimpleName().equals("Werewolf")) {
+		}else if(enemy instanceof Werewolf) {
 			werewolfEncounter(enemy);
-		}else if(enemy.getClass().getSimpleName().equals("Dragon")) {
+		}else if(enemy instanceof Dragon) {
 			dragonEncounter(enemy);
 		}
 	}
@@ -49,21 +49,21 @@ public class LargeEnemyGui extends JPanel {
 	 * @param ogre
 	 */
 	public void ogreEncounter(Enemy ogre) {
-		//TODO setIcon
+		enemyIcon.setIcon(new ImageIcon(SmallEnemyGui.class.getResource("/img/ogreEncounter.png")));
 		enemyIcon.setVisible(true);
 		enemyIcon.setText(ogre.toString());
 		add(enemyIcon);
 	}
 	
 	public void werewolfEncounter(Enemy werewolf) {
-		//TODO setIcon
+		enemyIcon.setIcon(new ImageIcon(SmallEnemyGui.class.getResource("/img/werewolfEncounter.png")));
 		enemyIcon.setVisible(true);
 		enemyIcon.setText(werewolf.toString());
 		add(enemyIcon);
 	}
 	
 	public void dragonEncounter(Enemy dragon) {
-		//TODO setIcon
+		enemyIcon.setIcon(new ImageIcon(SmallEnemyGui.class.getResource("/img/dragonEncounter.png")));
 		enemyIcon.setVisible(true);
 		enemyIcon.setText(dragon.toString());
 		add(enemyIcon);

@@ -1,21 +1,23 @@
 package guiCode;
 
 import java.awt.EventQueue;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import teamProject.PlayerCharacter;
 
 import enemyEncounter.EnemyEncounter;
-/**
- * This class is mainly used as a test class to ensure my other files work.
- * Contains two initiating methods for either spawning an enemy or beginning combat.
- */
+
 public class TheGame extends JFrame {
 	private static int smallCount = 1;
 	private static int mediumCount = 1;
 	private static int largeCount = 1;
 	private static final long serialVersionUID = 1L;
-	private static JPanel contentPane = new JPanel();
+	private static JPanel contentPane;
+	private EnemyEncounter encounter;
+	
+	private static PlayerCharacter player = new PlayerCharacter();
 
 	/**
 	 * Launch the application.
@@ -26,15 +28,16 @@ public class TheGame extends JFrame {
 				try {
 					TheGame frame = new TheGame();
 					frame.setVisible(true);
+					frame.encounter(1, "Small");
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
 		});
 		
-		spawnEnemy(1);
-		spawnEnemy(2);
-		spawnEnemy(3);
+		//spawnEnemy(1);
+		//spawnEnemy(2);
+		//spawnEnemy(3);
 //		spawnEnemy(1);
 //		spawnEnemy(1);
 //		spawnEnemy(1);
@@ -43,8 +46,10 @@ public class TheGame extends JFrame {
 //		spawnEnemy(1);
 //		spawnEnemy(1);
 //		spawnEnemy(1);
+
+		//encounter(1, "Small");
 		
-		encounter(3, "Small");
+		//player.setXP(10);
 	}
 
 	/**
@@ -53,6 +58,7 @@ public class TheGame extends JFrame {
 	public TheGame() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
+		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		
@@ -65,7 +71,7 @@ public class TheGame extends JFrame {
 	 * 2 - medium
 	 * 3 - large
 	 */
-	public static void spawnEnemy(int type) {
+	public void spawnEnemy(int type) {
 		if(type == 1) {
 			SmallEnemyGui smallEnemy = new SmallEnemyGui(smallCount);
 			contentPane.add(smallEnemy);
@@ -84,10 +90,16 @@ public class TheGame extends JFrame {
 	/**
 	 * When the player approaches the enemy, this class goes to EnemyEncounter with a number, saying what it is.
 	 */
-	public static void encounter(int enemy, String size) {
-		EnemyEncounter encounter = new EnemyEncounter(enemy, size);
+	public void encounter(int enemy, String size) {
+		encounter = new EnemyEncounter(enemy, size, this);
 		encounter.setVisible(true);
+	}
+	/**
+	 * Returns the player to avoid using static variables and methods, which causes the game to freeze.
+	 * @return
+	 */
+	public PlayerCharacter getPlayer() {
+		return player;
 	}
 
 }
-

@@ -3,6 +3,8 @@ package guiCode;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
+
 import java.util.Random;
 import teamProject.*;
 /**
@@ -34,13 +36,14 @@ public class MediumEnemyGui extends JPanel {
 	/**
 	 * Constructor used to create icons that would appear on the EnemyEncounter window during combat.
 	 * @param The same one enemy class is passed between classes.
+	 * @wbp.parser.constructor
 	 */
 	public MediumEnemyGui(Enemy enemy) {
-		if(enemy.getClass().getSimpleName().equals("Skeleton")) {
+		if(enemy instanceof Skeleton) {
 			skeletonEncounter(enemy);
-		}else if(enemy.getClass().getSimpleName().equals("Vampire")) {
+		}else if(enemy instanceof Vampire) {
 			vampireEncounter(enemy);
-		}else if(enemy.getClass().getSimpleName().equals("Soldier")) {
+		}else if(enemy instanceof Soldier) {
 			soldierEncounter(enemy);
 		}
 	}
@@ -49,21 +52,23 @@ public class MediumEnemyGui extends JPanel {
 	 * @param ogre
 	 */
 	public void skeletonEncounter(Enemy skeleton) {
-		//TODO setIcon
+		enemyIcon.setIcon(new ImageIcon(getClass().getResource("/img/skeletonEncounter.png")));
 		enemyIcon.setVisible(true);
 		enemyIcon.setText(skeleton.toString());
 		add(enemyIcon);
 	}
 	
 	public void vampireEncounter(Enemy vampire) {
-		//TODO setIcon
+		enemyIcon.setIcon(new ImageIcon(MediumEnemyGui.class.getResource("/img/vampireEncounter.png")));
 		enemyIcon.setVisible(true);
 		enemyIcon.setText(vampire.toString());
+		enemyIcon.setHorizontalTextPosition(SwingConstants.CENTER);
+		enemyIcon.setVerticalTextPosition(SwingConstants.BOTTOM);
 		add(enemyIcon);
 	}
 	
 	public void soldierEncounter(Enemy soldier) {
-		//TODO setIcon
+		enemyIcon.setIcon(new ImageIcon(MediumEnemyGui.class.getResource("/img/soldierEncounter.png")));
 		enemyIcon.setVisible(true);
 		enemyIcon.setText(soldier.toString());
 		add(enemyIcon);
