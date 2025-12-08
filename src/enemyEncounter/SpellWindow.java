@@ -5,6 +5,9 @@ import java.awt.Dimension;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import teamProject.PlayerCharacter;
+
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -13,15 +16,16 @@ import java.awt.event.ActionEvent;
  * A window that contains five buttons for five different spells.
  */
 public class SpellWindow extends JFrame {
+	private Spells spells = new Spells();
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-
+	
 	/**
 	 * Create the frame.
 	 * @param five digits that represent spell levels.
 	 */
-	public SpellWindow(int fireLvl, int iceLvl, int healLvl, int attBoostLvl, int defBoostLvl) {
+	public SpellWindow(EnemyEncounter encounter, PlayerCharacter player, int fireLvl, int iceLvl, int healLvl, int defBoostLvl, int attBoostLvl) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		setSize(300, 200);
@@ -29,20 +33,20 @@ public class SpellWindow extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.Y_AXIS));
-		
-		JButton fire = fireBtn(fireLvl);
+				
+		JButton fire = fireBtn(encounter, player, fireLvl);
 		contentPane.add(fire);
 		
-		JButton ice = iceBtn(iceLvl);
+		JButton ice = iceBtn(encounter, player, iceLvl);
 		contentPane.add(ice);
 		
-		JButton heal = healBtn(healLvl);
+		JButton heal = healBtn(encounter, player, healLvl);
 		contentPane.add(heal);
 		
-		JButton attackBoost = attackBoostBtn(attBoostLvl);
+		JButton attackBoost = attackBoostBtn(encounter, player, attBoostLvl);
 		contentPane.add(attackBoost);
 		
-		JButton defenseBoost = defenseBoostBtn(defBoostLvl);
+		JButton defenseBoost = defenseBoostBtn(encounter, player, defBoostLvl);
 		contentPane.add(defenseBoost);
 
 	}
@@ -51,7 +55,7 @@ public class SpellWindow extends JFrame {
 	 * After any of the buttons are pressed, the window is closed. The player can only select one spell.
 	 * @param level
 	 */
-	private JButton defenseBoostBtn(int level) {
+	private JButton defenseBoostBtn(EnemyEncounter encounter, PlayerCharacter player, int level) {
 		String name;
 		if(level == 1) {
 			name = "Defense Boost I";
@@ -67,15 +71,15 @@ public class SpellWindow extends JFrame {
 		JButton defenseBoost = new JButton(name);
 		defenseBoost.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Spells.defenseBoostSpell(level);
+				spells.defenseBoostSpell(encounter, player, level);
 				SpellWindow.this.dispose();
 			}
 		});
 		defenseBoost.setMaximumSize(new Dimension(290, 30));
 		return defenseBoost;
 	}
-
-	private JButton attackBoostBtn(int level) {
+	
+	private JButton attackBoostBtn(EnemyEncounter encounter, PlayerCharacter player, int level) {
 		String name;
 		if(level == 1) {
 			name = "Attack Boost I";
@@ -91,7 +95,7 @@ public class SpellWindow extends JFrame {
 		JButton attackBoost = new JButton(name);
 		attackBoost.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Spells.attackBoostSpell(level);
+				spells.attackBoostSpell(encounter, player, level);
 				SpellWindow.this.dispose();
 			}
 		});
@@ -99,7 +103,7 @@ public class SpellWindow extends JFrame {
 		return attackBoost;
 	}
 
-	private JButton healBtn(int level) {
+	private JButton healBtn(EnemyEncounter encounter, PlayerCharacter player, int level) {
 		String name;
 		if(level == 1) {
 			name = "Heal I";
@@ -115,7 +119,7 @@ public class SpellWindow extends JFrame {
 		JButton heal = new JButton(name);
 		heal.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
-				Spells.healSpell(level);
+				spells.healSpell(encounter, player, level);
 				SpellWindow.this.dispose();
 			}
 		});
@@ -123,7 +127,7 @@ public class SpellWindow extends JFrame {
 		return heal;
 	}
 
-	private JButton iceBtn(int level) {
+	private JButton iceBtn(EnemyEncounter encounter, PlayerCharacter player, int level) {
 		String name;
 		if(level == 1) {
 			name = "Ice I";
@@ -139,7 +143,7 @@ public class SpellWindow extends JFrame {
 		JButton ice = new JButton(name);
 		ice.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Spells.iceSpell(level);
+				spells.iceSpell(encounter, player, level);
 				SpellWindow.this.dispose();
 			}
 		});
@@ -147,7 +151,7 @@ public class SpellWindow extends JFrame {
 		return ice;
 	}
 
-	private JButton fireBtn(int level) {
+	private JButton fireBtn(EnemyEncounter encounter, PlayerCharacter player, int level) {
 		String name;
 		if(level == 1) {
 			name = "Fire I";
@@ -164,7 +168,7 @@ public class SpellWindow extends JFrame {
 		fire.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				SpellWindow.this.dispose();
-				Spells.fireSpell(level);
+				spells.fireSpell(encounter, player, level);
 			}
 		});
 		fire.setMaximumSize(new Dimension(290, 30));

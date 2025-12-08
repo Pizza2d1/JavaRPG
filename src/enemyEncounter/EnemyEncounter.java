@@ -20,25 +20,30 @@ import javax.swing.border.EmptyBorder;
  * The window that depicts the combat sequence against an enemy.
  */
 public class EnemyEncounter extends JFrame {
-	private static JLabel textBox = new JLabel();
+	private TheGame game;
+	private JLabel textBox = new JLabel();
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private static Enemy enemy;
-	private static boolean playerTurn = true;
+	private boolean playerTurn = true;
 	private static EnemyEncounter instance;
+	
+	private PlayerStatsPanel statsPanel;
 	
 	/**
 	 * Create the frame.
 	 * Type depicts the easy, normal, or hard enemy.
 	 * className depicts if it is a small, medium, or large enemy.
 	 */
-	public EnemyEncounter(int type, String className) {
+	public EnemyEncounter(int type, String className, TheGame game) {
+		this.game = game;
 		instance = this;
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setSize(600, 400);
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 		
@@ -68,8 +73,11 @@ public class EnemyEncounter extends JFrame {
 			}
 		}
 		
-		CombatPanel combatPanel = new CombatPanel();
+		CombatPanel combatPanel = new CombatPanel(this, game);
 		contentPane.add(combatPanel, BorderLayout.CENTER);
+		
+		statsPanel = new PlayerStatsPanel(game.getPlayer());
+		contentPane.add(statsPanel, BorderLayout.EAST);
 		
 		textBox.setText("Battle Start!");
 		textBox.setVerticalAlignment(SwingConstants.TOP);
@@ -80,13 +88,19 @@ public class EnemyEncounter extends JFrame {
 		add(textBox, BorderLayout.SOUTH);
 		//Change Background and area. Make it show descriptive text of player actions and enemy actions.
 		
-		//TODO Add panel including player's stats. Or include in combatPanel.
 	}
+	/**
+	 * Edits the player's health in the stats panel.
+	 */
+	public void setHealthLabel() {
+		statsPanel.setHealthLabel(game.getPlayer());
+	}
+	
 	/**
 	 * Used to change the text in the text box at the bottom.
 	 * @param text
 	 */
-	public static void setTextBox(String text) {
+	public void setTextBox(String text) {
 		textBox.setText(text);
 	}
 	
@@ -151,38 +165,90 @@ public class EnemyEncounter extends JFrame {
 	 * Used to get whether it is the player's turn or not. If playerTurn is false, the buttons will not work.
 	 * @return
 	 */
-	public static boolean getPlayerTurn() {
+	public boolean getPlayerTurn() {
 		return playerTurn;
 	}
 	/**
 	 * Used to set playerTurn to be true or false once the player or enemy takes their turn.
 	 * @param b
 	 */
-	public static void setPlayerTurn(boolean b) {
+	public void setPlayerTurn(boolean b) {
 		playerTurn = b;
 	}
 	/**
-	 * Impliments a 1.5 second pause before the enemy takes their turn.
+	 * Implements a 1.5 second pause before the enemy takes their turn.
 	 */
-	public static void nextTurn() {
+	public void nextTurn() {
+		final EnemyEncounter encounter = this;
+		final TheGame game = this.game;
 		Timer timer = new Timer(1500, new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				getEnemy().enemyTurn();
+				getEnemy().enemyTurn(encounter, game);
 			}
 		});
 		timer.setRepeats(false);
 		timer.start();
 	}
 	/**
+	 * Heals the player
+	 * @param heal
+	 */
+	public void healPlayer(int heal) {
+		game.getPlayer().heal(heal);
+		statsPanel.setHealthLabel(game.getPlayer());
+		nextTurn();
+	}
+	/**
+	 * Boosts player's defense
+	 * @param boost
+	 */
+	public void boostDefense(int boost) {
+		game.getPlayer().setDefenseBoost(boost);
+		statsPanel.setDefenseLabel(game.getPlayer());
+		nextTurn();
+	}
+	/**
+	 * Boosts player's attack
+	 * @param boost
+	 */
+	public void boostAttack(int boost) {
+		game.getPlayer().setAttackBoost(boost);
+		statsPanel.setAttackLabel(game.getPlayer());
+		nextTurn();
+	}
+	/**
+	 * Inflicts damage on the enemy, then updates the enemy's gui to display updated stats.
+	 * @param damage
+	 */
+	public void damageEnemy(int damage) {
+		enemy.setHealth(enemy.getHealth() - damage);
+		if(enemy instanceof SmallEnemy) {
+			SmallEnemyGui.setIconText(enemy);
+		}else if(enemy instanceof MediumEnemy) {
+			MediumEnemyGui.setIconText(enemy);
+		}else if(enemy instanceof LargeEnemy) {
+			LargeEnemyGui.setIconText(enemy);
+		}
+		if(enemy.getHealth() <= 0) {
+			setTextBox("Enemy defeated!");
+			this.enemyDefeated();
+		}else {
+			nextTurn();
+		}
+	}
+	/**
 	 * Used once the enemy's health reaches zero. Will pause for 1.5 seconds before closing the window and ending combat.
 	 */
-	public static void enemyDefeated() {
+	public void enemyDefeated() {
 		Timer timer = new Timer(1500, new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//TODO Give the player the xpYield and potentially level up.
+				game.getPlayer().setXP(EnemyEncounter.getEnemy().getXPYield());
 				EnemyEncounter.getInstance().dispose();
+				game.encounter(1, "Small");
+				game.getPlayer().setXP(50);
+				playerTurn = true;
 			}
 		});
 		timer.setRepeats(false);
@@ -195,5 +261,29 @@ public class EnemyEncounter extends JFrame {
 	 */
 	public static EnemyEncounter getInstance() {
 		return instance;
+	}
+	/**
+	 * Closes the window and opens a game over window
+	 */
+	public void playerDefeated() {
+		this.setTextBox("Player defeated!");
+		Timer timer = new Timer(1500, new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				EnemyEncounter.getInstance().dispose();
+				game.dispose();
+				GameOver gameOver = new GameOver();
+				gameOver.setVisible(true);
+			}
+		});
+		timer.setRepeats(false);
+		timer.start();
+	}
+	/**
+	 * Hands the stats panel to other methods to update.
+	 * @return
+	 */
+	public PlayerStatsPanel getStatsPanel() {
+		return statsPanel;
 	}
 }
